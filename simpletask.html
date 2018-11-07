@@ -1,0 +1,77 @@
+<html>
+	<head>
+	  <title>Bootstrap Example</title>
+	  <meta charset="utf-8">
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+		<div class="container">
+			<div><h1>Date Reverse</h1></div>
+			<div class="col-lg-3">
+				<input type="text" name="myDate" id="myDate" placeholder="ddmmyyyyy"/>
+				<button name="addButton" onClick="addToList()"/>ADD</button>
+			</div>
+			<div class="col-lg-3" id="listDiv">
+			</div>
+			<div class="col-lg-3" id="buttonDiv">
+				<button name="outputButton" onClick="getOutput()"/>Get Output</button>
+			</div>
+			<div class="col-lg-3" id="outputDiv">
+			</div>
+			<div class="col-lg-12"><h1>File Upload Sample</h1></div>
+			<div class="col-lg-6">
+				<input type="file" id="myFile">
+			</div>
+			<div class="col-lg-6">
+				<button onClick="uploadFile()">Upload</button>
+			<div/>
+		</div>
+		<script>
+			var myArr = [];
+			var listDiv = document.getElementById("listDiv");
+			var outputDiv = document.getElementById("outputDiv");
+			function addToList(){ 
+				var list = document.createElement('ul');
+				myArr.push(document.getElementById("myDate").value);  // Push values to an array
+				/*to display in UI*/
+				var li = document.createElement('li');
+				for(var i=0;i<myArr.length;i++){	
+					li.innerHTML = myArr[i];
+					list.appendChild(li);
+				}
+				listDiv.appendChild(list);
+				/*to display in UI ends*/
+			}
+			function getOutput (){
+				var list2 = document.createElement('ul');
+				/*Logic for reversing string elements in an array*/
+				let output = myArr.map((singleDate) => {
+					let slice1 = singleDate.slice(0,2);
+					let slice2 = singleDate.slice(2,4);
+					let slice3 = singleDate.slice(4,8);
+					return concatedString = slice3 + slice2 + slice1;
+				})
+				/*Logic for reversing string elements in an array - Ends*/
+				/*to display in UI*/
+				for(var i=0;i<output.length;i++){
+					var li2 = document.createElement('li');	
+					li2.innerHTML = output[i];
+					list2.appendChild(li2);
+				
+				}
+				outputDiv.appendChild(list2);
+				/*to display in UI ends*/
+				myArr = []; // empty the list to get new items
+			}
+			function uploadFile () {
+					let filePath = document.getElementById("myFile").value;
+					//let fileName = filePath.substring(filePath.lastIndexOf("\") +1);
+					alert("File is uploaded successfully");
+			}
+		</script>
+
+	</body>
+</html> 
