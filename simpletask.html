@@ -11,8 +11,8 @@
 		<div class="container">
 			<div><h1>Date Reverse</h1></div>
 			<div class="col-lg-3">
-				<input type="text" name="myDate" id="myDate" placeholder="ddmmyyyyy"/>
-				<button name="addButton" onClick="addToList()"/>ADD</button>
+			<label>How many input date you want to enter</label>
+				<input type="text" name="noOfBoxes" id="noOfBoxes" onchange="addToList()"/>
 			</div>
 			<div class="col-lg-3" id="listDiv">
 			</div>
@@ -34,16 +34,20 @@
 			var listDiv = document.getElementById("listDiv");
 			var outputDiv = document.getElementById("outputDiv");
 			function addToList(){ 
-				var list = document.createElement('ul');
-				myArr.push(document.getElementById("myDate").value);  // Push values to an array
-				/*to display in UI*/
-				var li = document.createElement('li');
-				for(var i=0;i<myArr.length;i++){	
-					li.innerHTML = myArr[i];
-					list.appendChild(li);
+				let noEntered = document.getElementById("noOfBoxes").value;
+				for(let i=1;i<=noEntered; i++){
+					let id = 'id'+i;
+					var inputBox = document.createElement('input');
+					inputBox.setAttribute('id',id);
+					listDiv.appendChild(inputBox);
+					//let breakElement = document.createElement('BR');
+					//inputBox.appendChild(breakElement);
+					document.getElementById(id).onchange = function() {getDate(id)};
+ 
 				}
-				listDiv.appendChild(list);
-				/*to display in UI ends*/
+			}
+			function getDate(id) {
+				myArr.push(document.getElementById(id).value);
 			}
 			function getOutput (){
 				var list2 = document.createElement('ul');
